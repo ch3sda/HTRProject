@@ -1,0 +1,21 @@
+# Virtual environment
+my_venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Django migrations
+*/migrations/
+
+# Environment variables file
+.env
+
+# IDE/editor specific files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Logs
+*.log
