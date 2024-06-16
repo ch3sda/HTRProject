@@ -74,9 +74,17 @@ WSGI_APPLICATION = 'lms.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+   # 'default': {
+   #     'ENGINE': 'django.db.backends.sqlite3', 
+   #     'NAME': BASE_DIR / 'db.sqlite3',
+   # }
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': '',          # Replace with your database name
+        'USER': 'root', # Replace with your MySQL username
+        'PASSWORD': '', # Replace with your MySQL password
+        'HOST': '',   # Set the IP address or hostname of the MySQL server
+        'PORT': '3306',         # Set the port used by your MySQL server (usually 3306)
     }
 }
 
@@ -117,9 +125,9 @@ STATIC_ROOT = 'D:/Chesda ITE Y2/PP/HTR Project/lms/static_root/'
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "htr" / "static",
 ]
-
+STATIC_ROOT = BASE_DIR / "static_root"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
