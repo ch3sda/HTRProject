@@ -1,6 +1,7 @@
+# models.py
+
 from django.db import models
-from django.contrib.auth.models import AbstractUser, Group, Permission      
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.utils import timezone
 
 # Custom User model
@@ -12,11 +13,21 @@ class UserSettings(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     preferences = models.JSONField()
 
-class Course(models.Model):
+class Path(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
+    cover = models.ImageField(upload_to='path_covers/', blank=True)
+    thumbnail = models.ImageField(upload_to='path_thumbnails/', blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+class Course(models.Model):
+    title = models.CharField(max_length=100, default='Default Title')
+    description = models.TextField()
+    thumbnail = models.ImageField(upload_to='course_thumbnails/', blank=True)
+    logo = models.ImageField(upload_to='course_logos/', blank=True)
     instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='courses')
     created_at = models.DateTimeField(default=timezone.now)
+    path = models.CharField(max_length=200, default='default/path/') 
 
 class Lesson(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
@@ -28,16 +39,8 @@ class Lab(models.Model):
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='labs')
     title = models.CharField(max_length=100)
     description = models.TextField()
+    thumbnail = models.ImageField(upload_to='lab_thumbnails/', blank=True)
     created_at = models.DateTimeField(default=timezone.now)
-
-class Path(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
-
-class PathCourse(models.Model):
-    path = models.ForeignKey(Path, on_delete=models.CASCADE, related_name='path_courses')
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='path_courses')
 
 class Competition(models.Model):
     title = models.CharField(max_length=100)

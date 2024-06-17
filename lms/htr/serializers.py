@@ -1,5 +1,11 @@
+# serializers.py
+
 from rest_framework import serializers
-from .models import User, UserSettings, Course, Lesson, Lab, Path, PathCourse, Competition, CompetitionParticipation, Rank, Leaderboard, Enrollment, Discussion, Transaction
+from .models import (
+    User, UserSettings, Course, Lesson, Lab, Path, Competition,
+    CompetitionParticipation, Rank, Leaderboard, Enrollment,
+    Discussion, Transaction
+)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,11 +35,6 @@ class LabSerializer(serializers.ModelSerializer):
 class PathSerializer(serializers.ModelSerializer):
     class Meta:
         model = Path
-        fields = '__all__'
-
-class PathCourseSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PathCourse
         fields = '__all__'
 
 class CompetitionSerializer(serializers.ModelSerializer):

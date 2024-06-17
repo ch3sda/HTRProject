@@ -1,9 +1,19 @@
-from django.shortcuts import render
+# views.py
+
 from rest_framework import viewsets
-from .models import User, UserSettings, Course, Lesson, Lab, Path, PathCourse, Competition, CompetitionParticipation, Rank, Leaderboard, Enrollment, Discussion, Transaction
+from django.shortcuts import render
+from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import OrderingFilter
+from rest_framework.pagination import PageNumberPagination
+from .models import (
+    User, UserSettings, Course, Lesson, Lab, Path, Competition,
+    CompetitionParticipation, Rank, Leaderboard, Enrollment,
+    Discussion, Transaction
+)
 from .serializers import (
-    UserSerializer, UserSettingsSerializer, CourseSerializer, LessonSerializer, LabSerializer, 
-    PathSerializer, PathCourseSerializer, CompetitionSerializer, CompetitionParticipationSerializer, 
+    UserSerializer, UserSettingsSerializer, CourseSerializer, LessonSerializer, LabSerializer,
+    PathSerializer, CompetitionSerializer, CompetitionParticipationSerializer,
     RankSerializer, LeaderboardSerializer, EnrollmentSerializer, DiscussionSerializer, TransactionSerializer
 )
 
@@ -30,10 +40,6 @@ class LabViewSet(viewsets.ModelViewSet):
 class PathViewSet(viewsets.ModelViewSet):
     queryset = Path.objects.all()
     serializer_class = PathSerializer
-
-class PathCourseViewSet(viewsets.ModelViewSet):
-    queryset = PathCourse.objects.all()
-    serializer_class = PathCourseSerializer
 
 class CompetitionViewSet(viewsets.ModelViewSet):
     queryset = Competition.objects.all()
@@ -63,7 +69,7 @@ class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
 
-
+# Your other views (e.g., index, login, signup, etc.) remain as defined in your previous messages
 def index(request):
     return render(request, 'htr/index.html')
 
