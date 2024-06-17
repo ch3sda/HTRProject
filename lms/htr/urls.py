@@ -1,6 +1,28 @@
 from django.urls import path
 from . import views
+from django.urls import include
+from rest_framework.routers import DefaultRouter
+from .views import (
+    UserViewSet, UserSettingsViewSet, CourseViewSet, LessonViewSet, LabViewSet, PathViewSet, 
+    PathCourseViewSet, CompetitionViewSet, CompetitionParticipationViewSet, RankViewSet, 
+    LeaderboardViewSet, EnrollmentViewSet, DiscussionViewSet, TransactionViewSet
+)
 
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'user-settings', UserSettingsViewSet)
+router.register(r'courses', CourseViewSet)
+router.register(r'lessons', LessonViewSet)
+router.register(r'labs', LabViewSet)
+router.register(r'paths', PathViewSet)
+router.register(r'path-courses', PathCourseViewSet)
+router.register(r'competitions', CompetitionViewSet)
+router.register(r'competition-participations', CompetitionParticipationViewSet)
+router.register(r'ranks', RankViewSet)
+router.register(r'leaderboards', LeaderboardViewSet)
+router.register(r'enrollments', EnrollmentViewSet)
+router.register(r'discussions', DiscussionViewSet)
+router.register(r'transactions', TransactionViewSet)
 urlpatterns = [
     path('', views.index, name='index'),
     path('login/', views.login, name='login'),
