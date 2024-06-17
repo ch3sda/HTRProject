@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'htr',  # Add your app here
+    'django.contrib.sites',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
