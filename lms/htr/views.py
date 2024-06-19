@@ -102,3 +102,6 @@ def ISO_27001(request):
 
 def explore(request):
     return render(request, 'htr/explore.html')
+
+def pagenotfound(request):
+    return render(request, 'htr/pagenotfound.html')
