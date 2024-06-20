@@ -105,3 +105,6 @@ def explore(request):
 
 def pagenotfound(request):
     return render(request, 'htr/pagenotfound.html')
+
+def usersetting(request):
+    return render(request, 'htr/usersetting.html')

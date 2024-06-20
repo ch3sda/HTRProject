@@ -443,6 +443,12 @@ html{
     display: flex;
     justify-content: center;
 }
+#setting-contact-profile{
+    display: flex;
+}
+#setting-socialmedia-password{
+    display: flex;
+}
 @media screen and (max-width: 1320px){
     
     #deep-info-content-each h2 {
@@ -700,6 +706,12 @@ html{
     #compete-join-public-btn,#compete-create-private-btn{
         margin-top: 2rem;
         margin-bottom: 2rem;
+    }
+    #setting-contact-profile{
+        display: block;
+    }
+    #setting-socialmedia-password{
+        display: block;
     }
 }
 @media screen and (max-width: 460px){
