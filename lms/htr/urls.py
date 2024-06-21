@@ -36,7 +36,7 @@ urlpatterns = [
     path('ISO_27001/', views.ISO_27001, name='ISO_27001'),
     path('explore/', views.explore, name='explore'),
     path('page-not-found/', views.pagenotfound, name='pagenotfound'),
-        path('setting/', views.usersetting, name='usersetting'),
+    path('setting/', views.usersetting, name='usersetting'),
 
 
 ]
