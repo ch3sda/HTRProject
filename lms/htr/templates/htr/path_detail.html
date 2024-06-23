@@ -1,0 +1,144 @@
+<!-- path_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ path.title }}</title>
+
+    <!-- Tailwind CSS (from CDN for simplicity) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles (if any) -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+    <!-- Dark Mode Script -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        }
+        else{
+            document.documentElement.classList.add('dark');
+        }
+        
+    </script>
+</head>
+<body>
+
+    {% include 'components/navbar_user.html' %}
+
+    {% comment %} <div class="container mx-auto py-4">
+        <div class="bg-white rounded-lg shadow-md p-4">
+            {% if path.cover %}
+            <img src="{{ path.cover.url }}" alt="{{ path.title }} Cover" class="mb-2">
+            {% endif %}
+            <h1 class="text-3xl font-semibold mb-4">{{ path.title }}</h1>
+            <p class="text-gray-600">{{ path.description }}</p>
+        </div>
+    </div> {% endcomment %}
+    <!-- htr/path_detail.html -->
+<div>
+    <!-- Category text -->
+    <div id="comepte-banner-main-container" class="w-full h-auto bg-gradient-to-t from-blue-900 to-indigo-950">
+        <div>
+            <p class="text-4xl font-bold leading-normal text-gray-900 dark:text-white text-center">{{ path.title }}</p>
+            <p class="text-xl font-base leading-normal text-gray-900 dark:text-white text-center">{{ path.description }}</p>
+        </div>
+        <div>
+            {% if path.cover %}
+            <img src="{{ path.logo.url }}" alt="{{ path.title }} Cover" class="h-60 max-w-lg mx-auto">
+            {% endif %}
+        </div>
+    </div>
+    <!-- Path -->
+    <div id="show-your-path" class="p-40">
+        <div id="show-your-path-slide">
+            <div id="text-show-new-release">
+                <p class="underline decoration-lime-400 text-4xl font-semibold text-gray-900 dark:text-gray-900">Your Path</p>
+            </div>
+            <div id="show-your-path-slide-courses" class="w-full p-4 bg-white border border-gray-200 rounded-lg sm:p-8 dark:bg-transparent">
+                <div class="flex items-center justify-between mb-4">
+                    <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-gray-800">Current path</h5>
+                    <div class="w-40 bg-gray-200 rounded-full dark:bg-gray-500">
+                        <div class="bg-blue-500 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full" style="width: 25%"> 25%</div>
+                    </div>
+                </div>
+
+                {% comment %} Course {% endcomment %}
+                <div class="flow-root">
+                    <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        {% for course in courses %}
+                        <li class="py-3 sm:py-4 dark:hover:bg-gray-300">
+                            <a href="#">
+                                <div class="flex items-center">
+                                    <span class="flex w-8 h-8 me-3 bg-blue-600 rounded-full"></span>
+                                    <div class="flex-shrink-0">
+                                        {% if course.thumbnail %}
+                                        <img class="w-10 h-10" src="{{ course.logo.url }}" alt="{{ course.title }} Thumbnail">
+                                        {% endif %}
+                                    </div>
+                                    <div class="flex-1 min-w-0 ms-4">
+                                        <p id="show-path-course-name" class="text-sm font-medium text-gray-900 truncate dark:text-white">
+                                            {{ course.title }}
+                                        </p>
+                                        <p id="show-path-course-description" class="text-sm text-gray-500 truncate dark:text-gray-400">
+                                            {{ course.description }}
+                                        </p>
+                                    </div>
+                                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                        <!-- Any additional info -->
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    {% include 'components/footer_semi.html' %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script>
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -121,7 +121,8 @@ USE_I18N = True
 USE_TZ = True
 
 SITE_ID = 1
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = 'D:/Chesda ITE Y2/PP/HTR Project/lms/static_root/'
 

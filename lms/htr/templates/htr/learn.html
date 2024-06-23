@@ -41,13 +41,13 @@
         <div id="user-learn-main-tab-switch-container">
             <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-100 dark:border-cyan-600 dark:text-gray-800">
                 <li class="me-2">
-                    <a href="/learn.html" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-cyan-600 dark:text-white">Learn</a>
+                    <a href="{% url 'learn' %}" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-cyan-600 dark:text-white">Learn</a>
                 </li>
                 <li class="me-2">
-                    <a href="/practice.html" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-amber-600 dark:hover:text-white">Practice</a>
+                    <a href="{% url 'practice' %}" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-amber-600 dark:hover:text-white">Practice</a>
                 </li>
                 <li class="me-2">
-                    <a href="/compete.html" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-red-600 dark:hover:text-white">Compete</a>
+                    <a href="{% url 'compete' %}" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-red-600 dark:hover:text-white">Compete</a>
                 </li>
             </ul>
         </div>
@@ -60,325 +60,34 @@
     </div>
     <!-- catagory text -->
     <div id="text-show-primiry-course-cat">
-    <div id="text-show-course-cat">
-    <p  class="underline decoration-lime-400 text-4xl font-normal text-gray-900 dark:text-white">Cybersecurity</p>
-    </div>
-    </div>
-
-    <!-- course cybersecurity-->
-    <div id="user-learn-main-courses-container">
-        <div id="user-learn-main-courses-container-all">
-            <div id="user-learn-main-courses-container-all-row">
-                <div id="user-learn-main-courses-container-all-row-left">
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="/ISO_27001.html">
-                                <img class="rounded-t-lg" src="/Resource/Icon/ISO_27001_by_HYSAVUTH CHANESDA.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="/ISO_27001.html">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">ISO 27001</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Discover ISO 27001, the global standard for information security management systems.</p>
-                                <a href="/ISO_27001.html" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/ISO_27001_by_HYSAVUTH CHANESDA.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">ISO 27001</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Discover ISO 27001, the global standard for information security management systems.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>         
-                </div>
-                <div id="user-learn-main-courses-container-all-row-right">
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/ISO_27001_by_HYSAVUTH CHANESDA.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">ISO 27001</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Discover ISO 27001, the global standard for information security management systems.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/ISO_27001_by_HYSAVUTH CHANESDA.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">ISO 27001</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Discover ISO 27001, the global standard for information security management systems.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>         
-                </div>                        
-            </div>
-            <div id="user-learn-main-courses-container-all-row">
-                <div id="user-learn-main-courses-container-all-row-left">
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/ISO_27001_by_HYSAVUTH CHANESDA.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">ISO 27001</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Discover ISO 27001, the global standard for information security management systems.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/ISO_27001_by_HYSAVUTH CHANESDA.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">ISO 27001</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Discover ISO 27001, the global standard for information security management systems.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>         
-                </div>
-                <div id="user-learn-main-courses-container-all-row-right">
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/ISO_27001_by_HYSAVUTH CHANESDA.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">ISO 27001</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Discover ISO 27001, the global standard for information security management systems.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/ISO_27001_by_HYSAVUTH CHANESDA.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">ISO 27001</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Discover ISO 27001, the global standard for information security management systems.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>         
-                </div>                        
-            </div>            
-        </div>
-    </div>
-
-    <!-- catagory text -->
-    <div id="text-show-primiry-course-cat">
         <div id="text-show-course-cat">
-            <p  class="underline decoration-lime-400 text-4xl font-normal text-gray-900 dark:text-white">Network</p>
+        <p  class="underline decoration-lime-400 text-4xl font-normal text-gray-900 dark:text-white">Learning Paths</p>
         </div>
     </div>
 
-    <!-- course network -->
-    <div id="user-learn-main-courses-container">
-        <div id="user-learn-main-courses-container-all">
-            <div id="user-learn-main-courses-container-all-row">
-                <div id="user-learn-main-courses-container-all-row-left">
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/Network.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">Fundamentals of Network</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Explore the world of Newtwork. You will able understand the fundamentals of Network.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
+
+    
+        <!-- Learning Paths -->
+        <div class="container mx-auto py-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {% for path in paths %}
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    {% if path.cover %}
+                    <div class="relative overflow-hidden" style="padding-top: 56.25%;">
+                        <img src="{{ path.cover.url }}" alt="{{ path.title }} Cover" class="absolute inset-0 w-full h-full object-cover">
                     </div>
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/Network.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">Fundamentals of Network</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Explore the world of Newtwork. You will able understand the fundamentals of Network.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>         
+                    {% endif %}
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold mb-2">{{ path.title }}</h2>
+                        <p class="text-gray-600 leading-snug mb-4">{{ path.description|truncatewords_html:20 }}</p>
+                        <a href="{% url 'path_detail' slug=path.slug %}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg">View Path</a>
+                    </div>
                 </div>
-                <div id="user-learn-main-courses-container-all-row-right">
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/Network.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">Fundamentals of Network</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Explore the world of Newtwork. You will able understand the fundamentals of Network.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/Network.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">Fundamentals of Network</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Explore the world of Newtwork. You will able understand the fundamentals of Network.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>         
-                </div>                        
+                {% endfor %}
             </div>
-            <div id="user-learn-main-courses-container-all-row">
-                <div id="user-learn-main-courses-container-all-row-left">
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/Network.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">Fundamentals of Network</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Explore the world of Newtwork. You will able understand the fundamentals of Network.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/Network.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">Fundamentals of Network</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Explore the world of Newtwork. You will able understand the fundamentals of Network.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>         
-                </div>
-                <div id="user-learn-main-courses-container-all-row-right">
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/Network.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">Fundamentals of Network</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Explore the world of Newtwork. You will able understand the fundamentals of Network.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>
-                    <div id="user-learn-main-courses-container-course-card" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-white ">
-                            <a href="#">
-                                <img class="rounded-t-lg" src="/Resource/Icon/Network.png" alt="" />
-                            </a>
-                            <div class="p-5">
-                                <a href="#">
-                                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:gray-900">Fundamentals of Network</h5>
-                                </a>
-                                <p class="mb-3 font-normal text-gray-700 dark:text-gray-700">Explore the world of Newtwork. You will able understand the fundamentals of Network.</p>
-                                <a href="#" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Enroll now
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                    </svg>
-                                </a>
-                            </div>
-                    </div>         
-                </div>                        
-            </div>       
         </div>
-    </div>
+
+
 </div>
 
  <!-- Footer -->

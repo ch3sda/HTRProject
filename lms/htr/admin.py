@@ -20,3 +20,12 @@ admin.site.register(Leaderboard)
 admin.site.register(Enrollment)
 admin.site.register(Discussion)
 admin.site.register(Transaction)
+
+class PathAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('title',)}  # This auto-generates the slug from the title
+class CourseInline(admin.TabularInline):  # or admin.StackedInline for a more detailed view
+    model = Course
+    extra = 1  # Number of extra forms to display
+class PathAdmin(admin.ModelAdmin):
+    inlines = [CourseInline]
+    

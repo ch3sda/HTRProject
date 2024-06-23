@@ -3,7 +3,7 @@
 from rest_framework import viewsets
 from django.shortcuts import render
 from rest_framework.permissions import IsAuthenticated
-from django_filters.rest_framework import DjangoFilterBackend
+from django.http import Http404
 from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
 from .models import (
@@ -16,6 +16,7 @@ from .serializers import (
     PathSerializer, CompetitionSerializer, CompetitionParticipationSerializer,
     RankSerializer, LeaderboardSerializer, EnrollmentSerializer, DiscussionSerializer, TransactionSerializer
 )
+from django.shortcuts import render, get_object_or_404
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -69,6 +70,10 @@ class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
 
+
+def some_view(request):
+    if 'example_param' not in request.GET:
+        raise Http404("This page does not exist")
 # Your other views (e.g., index, login, signup, etc.) remain as defined in your previous messages
 def index(request):
     return render(request, 'htr/index.html')
@@ -83,7 +88,13 @@ def dashboard(request):
     return render(request, 'htr/dashboard.html')
 
 def learn(request):
-    return render(request, 'htr/learn.html')
+    paths = Path.objects.all()
+    return render(request, 'htr/learn.html',{'paths': paths})
+
+def path_detail(request, slug):
+    path = get_object_or_404(Path, slug=slug)
+    courses = Course.objects.all()
+    return render(request, 'htr/path_detail.html', {'path': path,'courses': courses})
 
 def compete(request):
     return render(request, 'htr/compete.html')
@@ -102,9 +113,6 @@ def ISO_27001(request):
 
 def explore(request):
     return render(request, 'htr/explore.html')
-
-def pagenotfound(request):
-    return render(request, 'htr/pagenotfound.html')
 
 def usersetting(request):
     return render(request, 'htr/usersetting.html')

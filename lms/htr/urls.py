@@ -1,11 +1,20 @@
+
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path , include
 from . import views
+from django.shortcuts import render
 from rest_framework.routers import DefaultRouter
 from .views import (
     UserViewSet, UserSettingsViewSet, CourseViewSet, LessonViewSet, LabViewSet,
     PathViewSet, CompetitionViewSet, CompetitionParticipationViewSet,
     RankViewSet, LeaderboardViewSet, EnrollmentViewSet, DiscussionViewSet, TransactionViewSet
 )
+from .models import Course
+
+def learn(request):
+    courses = Course.objects.all()
+    return render(request, 'learn.html', {'courses': courses})
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -35,8 +44,9 @@ urlpatterns = [
     path('rank/', views.rank, name='rank'),
     path('ISO_27001/', views.ISO_27001, name='ISO_27001'),
     path('explore/', views.explore, name='explore'),
-    path('page-not-found/', views.pagenotfound, name='pagenotfound'),
     path('setting/', views.usersetting, name='usersetting'),
-
-
-]
+    path('learn/path/<slug:slug>/', views.path_detail, name='path_detail'),
+    ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

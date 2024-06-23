@@ -41,13 +41,13 @@
         <div id="user-learn-main-tab-switch-container">
             <ul class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-100 dark:border-amber-600 dark:text-gray-800">
                 <li class="me-2">
-                    <a href="/learn.html" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-cyan-600 dark:hover:text-white">Learn</a>
+                    <a href="{% url 'learn' %}" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-cyan-600 dark:hover:text-white">Learn</a>
                 </li>
                 <li class="me-2">
-                    <a href="/practice.html" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-amber-600 dark:text-white">Practice</a>
+                    <a href="{% url 'practice' %}" aria-current="page" class="inline-block p-4 text-blue-600 bg-gray-100 rounded-t-lg active dark:bg-amber-600 dark:text-white">Practice</a>
                 </li>
                 <li class="me-2">
-                    <a href="/compete.html" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-red-600 dark:hover:text-white">Compete</a>
+                    <a href="{% url 'compete' %}" class="inline-block p-4 rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-red-600 dark:hover:text-white">Compete</a>
                 </li>
             </ul>
         </div>
