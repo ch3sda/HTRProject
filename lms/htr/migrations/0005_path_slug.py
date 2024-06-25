@@ -9,6 +9,7 @@ class Migration(migrations.Migration):
         ('htr', '0004_alter_course_path'),
     ]
 
+
     operations = [
         migrations.AddField(
             model_name='path',
