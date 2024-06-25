@@ -5,9 +5,6 @@ my_venv/
 __pycache__/
 *.pyc
 
-# Django migrations
-*/migrations/
-
 # Environment variables file
 .env
 
