@@ -40,18 +40,23 @@
     </div> {% endcomment %}
     <!-- htr/path_detail.html -->
 <div>
-    <!-- Category text -->
-    <div id="comepte-banner-main-container" class="w-full h-auto bg-gradient-to-t from-blue-900 to-indigo-950">
-        <div>
+    <div id="comepte-banner-main-container" class="w-full h-auto relative">
+        {% if path.cover %}
+            <img src="{{ path.cover.url }}" alt="{{ path.title }} Cover" class="absolute inset-0 w-full h-full object-cover">
+        {% else %}
+            <div class="absolute inset-0 w-full h-full bg-gradient-to-t from-{{ path.banner_color_start }} to-{{ path.banner_color_end }}"></div>
+        {% endif %}
+        <div class="relative flex flex-col justify-center items-center h-60">
             <p class="text-4xl font-bold leading-normal text-gray-900 dark:text-white text-center">{{ path.title }}</p>
             <p class="text-xl font-base leading-normal text-gray-900 dark:text-white text-center">{{ path.description }}</p>
         </div>
-        <div>
-            {% if path.cover %}
-            <img src="{{ path.logo.url }}" alt="{{ path.title }} Cover" class="h-60 max-w-lg mx-auto">
+        <div class="relative flex justify-center">
+            {% if path.logo %}
+                <img src="{{ path.logo.url }}" alt="{{ path.title }} Logo" class="h-60 max-w-lg mx-auto">
             {% endif %}
         </div>
     </div>
+    
     <!-- Path -->
     <div id="show-your-path" class="p-40">
         <div id="show-your-path-slide">

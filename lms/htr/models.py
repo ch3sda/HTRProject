@@ -22,7 +22,9 @@ class Path(models.Model):
     logo = models.ImageField(upload_to='path_logos/', blank=True)
     slug = models.SlugField(unique=True, blank=True)  # Add this line
     created_at = models.DateTimeField(default=timezone.now)
-
+    banner_color_start = models.CharField(max_length=20, default='blue')  # Gradient start color
+    banner_color_end = models.CharField(max_length=20, default='indigo')  # Gradient end color
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
