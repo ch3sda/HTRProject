@@ -108,8 +108,8 @@ def subscribe(request):
 def rank(request):
     return render(request, 'htr/rank.html')
 
-def ISO_27001(request):
-    return render(request, 'htr/ISO_27001.html')
+def course_detail(request):
+    return render(request, 'htr/course_detail.html')
 
 def explore(request):
     return render(request, 'htr/explore.html')
