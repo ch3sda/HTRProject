@@ -85,7 +85,11 @@ def signup(request):
     return render(request, 'htr/signup.html')
 
 def dashboard(request):
-    return render(request, 'htr/dashboard.html')
+    recent_paths = Path.objects.order_by('-created_at')[:5]
+    context = {
+        'recent_paths': recent_paths,
+    }
+    return render(request, 'htr/dashboard.html' ,context)
 
 def learn(request):
     paths = Path.objects.all()
