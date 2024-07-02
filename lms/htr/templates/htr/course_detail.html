@@ -22,68 +22,47 @@
 
 {% include 'components/navbar_user.html' %}
 
-
-    <!-- Banner Section -->
-    <div class="w-full h-auto bg-gradient-to-t from-{{ course.path.banner_color_start }} to-{{ course.path.banner_color_end }}">
-        <div class="max-w-6xl mx-auto py-16">
-            <p class="text-4xl font-bold leading-normal text-gray-900 dark:text-white text-center">{{ course.title }}</p>
-            <p class="text-xl font-base leading-normal text-gray-900 dark:text-white text-center">{{ course.description }}</p>
-        </div>
-        <div class="max-w-6xl mx-auto pb-16">
-            <img src="{{ course.logo.url }}" alt="{{ course.title }}" class="h-60 max-w-lg mx-auto">
-        </div>
+<div id="comepte-banner-main-container" class="w-full h-auto relative">
+    {% if course.cover %}
+        <img src="{{ course.cover.url }}" alt="{{ course.title }} Cover" class="absolute inset-0 w-full h-full object-cover">
+    {% else %}
+        <div class="absolute inset-0 w-full h-full bg-gradient-to-t from-{{ course.path.banner_color_start }} to-{{ course.path.banner_color_end }}"></div>
+    {% endif %}
+    <div class="relative flex flex-col justify-center items-center h-60">
+        <p class="text-4xl font-bold leading-normal text-gray-900 dark:text-white text-center">{{ course.title }}</p>
+        <p class="text-xl font-base leading-normal text-gray-900 dark:text-white text-center">{{ course.description }}</p>
     </div>
+    <div class="relative flex justify-center">
+        {% if course.logo %}
+            <img src="{{ course.logo.url }}" alt="{{ course.title }} Logo" class="h-60 max-w-lg mx-auto">
+        {% endif %}
+    </div>
+</div>
 
-    <!-- Main Content Section - Course Sections -->
-    <div class="max-w-6xl mx-auto mt-8">
-        {% for section in course.sections.all %}
-        <div id="section-{{ section.id }}" class="mb-12">
+<div id="course-content" class="px-8 py-16">
+    <div class="max-w-6xl mx-auto">
+        {% for section in sections %}
+        <div id="section-{{ section.id }}" class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">{{ section.title }}</h2>
-            <div class="mt-4 text-gray-700 dark:text-gray-400">
-                <p>{{ section.content }}</p>
-                {% if section.image %}
-                <img src="{{ section.image.url }}" alt="{{ section.title }}" class="mt-4 max-w-full h-auto">
-                {% endif %}
-            </div>
+            <p class="mt-4 text-gray-700 dark:text-gray-400">{{ section.content }}</p>
+            {% if section.image %}
+            <img src="{{ section.image.url }}" alt="{{ section.title }}" class="mt-4">
+            {% endif %}
             {% if section.questions.all %}
             <div class="mt-4">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Questions:</h3>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Answer the questions below:</h3>
                 <ul class="list-disc list-inside">
                     {% for question in section.questions.all %}
-                    <li>
-                        <div class="sc-kKhKVs icBLIU">
-                            <div class="sc-hOwajD gmnOkF">{{ question.text }}</div>
-                            <span class="sc-hvxGIR igdrhm"></span>
-                        </div>
-                        <div class="sc-bJHiVm jOXRTA">
-                            <div class="sc-GYHpF llHGkQ">
-                                <div class="sc-fEcBxD iFsqFe">
-                                    <form class="sc-hpJnj ersbiy">
-                                        <div class="sc-glCeEM tGreB">
-                                            <div class="sc-kYxDKI iaxtnO">
-                                                <div class="sc-gEvEer sc-hCPjZK dUlYmO ipdJds">
-                                                    <input id="1" name="1" data-testid="answer-field" autocomplete="off" placeholder="Answer format: ******" class="sc-bbSZdi jnxbY" value="{{ question.answer }}" disabled="">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="sc-gzHyEh kKuVpN">
-                                            <button type="submit" class="sc-kAyceB lblCxo sc-kKQKPC sc-kYWeOX dGkNhP kQbsIQ">
-                                                <svg class="svg-inline--fa fa-check " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                                                    <path fill="currentColor" d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
-                                                </svg>
-                                                Correct Answer
-                                            </button>
-                                            <button type="button" class="sc-kAyceB dDSPst sc-kKQKPC dGkNhP">
-                                                <svg class="svg-inline--fa fa-lightbulb " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                                                    <path fill="currentColor" d="M112.1 454.3c0 6.297 1.816 12.44 5.284 17.69l17.14 25.69c5.25 7.875 17.17 14.28 26.64 14.28h61.67c9.438 0 21.36-6.401 26.61-14.28l17.08-25.68c2.938-4.438 5.348-12.37 5.348-17.7L272 415.1h-160L112.1 454.3zM192 0C90.02 .3203 16 82.97 16 175.1c0 44.38 16.44 84.84 43.56 115.8c16.53 18.84 42.34 58.23 52.22 91.45c.0313 .25 .0938 .5166 .125 .7823h160.2c.0313-.2656 .0938-.5166 .125-.7823c9.875-33.22 35.69-72.61 52.22-91.45C351.6 260.8 368 220.4 368 175.1C368 78.8 289.2 .0039 192 0zM288.4 260.1c-15.66 17.85-35.04 46.3-49.05 75.89h-94.61c-14.01-29.59-33.39-58.04-49.04-75.88C75.24 236.8 64 206.1 64 175.1C64 113.3 112.1 48.25 191.1 48C262.6 48 320 105.4 320 175.1C320 206.1 308.8 236.8 288.4 260.1zM176 80C131.9 80 96 115.9 96 160c0 8.844 7.156 16 16 16S128 168.8 128 160c0-26.47 21.53-48 48-48c8.844 0 16-7.148 16-15.99S184.8 80 176 80z"></path>
-                                                </svg>
-                                                Hint
-                                            </button>
-                                        </div>
-                                    </form>
-                                </div>
+                    <li class="mt-2">
+                        <p>{{ question.text }}</p>
+                        <form method="post" class="mt-2">
+                            {% csrf_token %}
+                            <input type="text" name="answer_{{ question.id }}" class="border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded p-2 w-full" placeholder="Answer format: ******">
+                            <div class="mt-2 flex space-x-2">
+                                <button type="submit" class="bg-green-500 text-white p-2 rounded">Submit</button>
+                                <button type="button" class="bg-orange-500 text-white p-2 rounded">Hint</button>
                             </div>
-                        </div>
+                        </form>
                     </li>
                     {% endfor %}
                 </ul>
@@ -92,7 +71,7 @@
         </div>
         {% endfor %}
     </div>
-
+</div>
 <!-- Footer -->
 {% include 'components/footer_semi.html' %}
 

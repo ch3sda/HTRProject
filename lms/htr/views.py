@@ -124,7 +124,12 @@ def rank(request):
 
 def course_detail(request, slug):
     course = get_object_or_404(Course, slug=slug)
-    return render(request, 'htr/course_detail.html', {'course': course})
+    sections = course.sections.all()
+    context = {
+        'course': course,
+        'sections': sections,
+    }
+    return render(request, 'htr/course_detail.html', context)
 
 def explore(request):
     return render(request, 'htr/explore.html')

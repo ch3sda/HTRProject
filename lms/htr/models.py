@@ -36,9 +36,13 @@ class Course(models.Model):
     description = models.TextField()
     thumbnail = models.ImageField(upload_to='course_thumbnails/', blank=True)
     logo = models.ImageField(upload_to='course_logos/', blank=True)
+    cover = models.ImageField(upload_to='course_covers/', blank=True)
+    banner_color_start = models.CharField(max_length=20, default='blue')
+    banner_color_end = models.CharField(max_length=20, default='indigo')
     instructor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='courses')
     created_at = models.DateTimeField(default=timezone.now)
     path = models.ForeignKey(Path, on_delete=models.CASCADE, related_name='courses')
+
 
     def __str__(self):
         return self.title
