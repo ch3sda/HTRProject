@@ -41,37 +41,71 @@
 
 <div id="course-content" class="px-8 py-16">
     <div class="max-w-6xl mx-auto">
-        {% for section in sections %}
-        <div id="section-{{ section.id }}" class="mb-12 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-            <h2 class="text-2xl font-bold leading-tight text-gray-900 dark:text-white">{{ section.title }}</h2>
-            <p class="mt-4 text-gray-700 dark:text-gray-400">{{ section.content }}</p>
-            {% if section.image %}
-            <img src="{{ section.image.url }}" alt="{{ section.title }}" class="mt-4">
-            {% endif %}
-            {% if section.questions.all %}
-            <div class="mt-4">
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Answer the questions below:</h3>
-                <ul class="list-disc list-inside">
-                    {% for question in section.questions.all %}
-                    <li class="mt-2">
-                        <p>{{ question.text }}</p>
-                        <form method="post" class="mt-2">
-                            {% csrf_token %}
-                            <input type="text" name="answer_{{ question.id }}" class="border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded p-2 w-full" placeholder="Answer format: ******">
-                            <div class="mt-2 flex space-x-2">
-                                <button type="submit" class="bg-green-500 text-white p-2 rounded">Submit</button>
-                                <button type="button" class="bg-orange-500 text-white p-2 rounded">Hint</button>
-                            </div>
-                        </form>
-                    </li>
-                    {% endfor %}
-                </ul>
+        <div id="accordion-collapse" data-accordion="collapse">
+            {% for section in sections %}
+            <h2 id="accordion-collapse-heading-{{ section.id }}">
+                <button type="button" class="mt-10 flex items-center justify-between w-full p-5 font-medium text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:bg-gray-900 dark:border-gray-700 dark:text-white" data-accordion-target="#accordion-collapse-body-{{ section.id }}" aria-expanded="false" aria-controls="accordion-collapse-body-{{ section.id }}">
+                    <span class="text-white">{{ section.title }}</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-collapse-body-{{ section.id }}" class="hidden" aria-labelledby="accordion-collapse-heading-{{ section.id }}">
+                <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
+                    <p class="mb-2 text-gray-500 dark:text-gray-800">{{ section.content }}</p>
+                    {% if section.image %}
+                    <img src="{{ section.image.url }}" alt="{{ section.title }}" class="mt-4">
+                    {% endif %}
+                    {% if section.questions.all %}
+                    <div class="mt-4">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-900">Answer the questions below:</h3>
+                        <ul class="list-disc list-inside">
+                            {% for question in section.questions.all %}
+                            <li class="mt-2">
+                                <p>{{ question.text }}</p>
+                                <form method="post" class="mt-2 flex flex-wrap items-start" data-question-id="{{ question.id }}">
+                                    {% csrf_token %}
+                                    <input type="text" name="answer_{{ question.id }}" class="answer-input border-gray-300 dark:bg-transparent dark:border-gray-600 rounded p-2 w-full md:w-auto md:flex-1 mb-2 md:mb-0 md:mr-2" placeholder="Answer format: ******">
+                                    <div class="flex space-x-2 w-full md:w-auto">
+                                        <button type="button" class="submit-button bg-green-500 text-white p-2 rounded w-full md:w-auto">Submit</button>
+                                        {% if question.hint %}
+                                        <button type="button" class="hint-button bg-orange-500 text-white p-2 rounded w-full md:w-auto" data-hint="{{ question.hint }}">Hint</button>
+                                        {% endif %}
+                                    </div>
+                                </form>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
-            {% endif %}
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
+
+<!-- Hint Modal -->
+<div id="hint-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
+    <div class="flex items-center justify-center min-h-screen px-4">
+        <div class="fixed inset-0 transition-opacity" aria-hidden="true">
+            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+        </div>
+
+        <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all max-w-lg w-full">
+            <div class="bg-gray-100 dark:bg-gray-900 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button id="close-hint-modal" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 sm:ml-3 sm:w-auto sm:text-sm">
+                    Close
+                </button>
+            </div>
+            <div class="px-4 py-5 bg-white dark:bg-gray-800 sm:p-6">
+                <p id="hint-content" class="text-gray-700 dark:text-gray-300"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Footer -->
 {% include 'components/footer_semi.html' %}
 
@@ -103,6 +137,41 @@
         }
     });
 
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.submit-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const form = button.closest('form');
+                const answerInput = form.querySelector('.answer-input');
+                // Assuming you have a way to check the answer via a backend or a predefined list
+                // For demonstration, let's assume any answer "correct" is right
+                if (answerInput.value.trim().toLowerCase() === 'correct') {
+                    answerInput.classList.add('bg-gray-200', 'dark:bg-gray-700');
+                    button.textContent = 'Corrected';
+                    button.classList.remove('bg-green-500');
+                    button.classList.add('bg-gray-500');
+                    answerInput.disabled = true;
+                } else {
+                    // Handle incorrect answer
+                    alert('Incorrect answer. Try again.');
+                }
+            });
+        });
+    
+        document.querySelectorAll('.hint-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const hintContent = button.getAttribute('data-hint');
+                const hintModal = document.getElementById('hint-modal');
+                document.getElementById('hint-content').textContent = hintContent;
+                hintModal.classList.remove('hidden');
+            });
+        });
+    
+        document.getElementById('close-hint-modal').addEventListener('click', function () {
+            document.getElementById('hint-modal').classList.add('hidden');
+        });
+    });
 </script>
 </body>
 </html>

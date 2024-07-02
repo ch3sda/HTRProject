@@ -69,6 +69,7 @@ class Question(models.Model):
     section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='questions')
     text = models.TextField()
     answer = models.TextField(blank=True)
+    hint = models.TextField(blank=True, null=True)  # Add this line to include hint
 
     def __str__(self):
         return self.text
