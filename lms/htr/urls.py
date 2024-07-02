@@ -1,26 +1,20 @@
-
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path , include
+from django.urls import path, include
 from . import views
-from django.shortcuts import render
 from rest_framework.routers import DefaultRouter
 from .views import (
-    UserViewSet, UserSettingsViewSet, CourseViewSet, LessonViewSet, LabViewSet,
+    UserViewSet, UserSettingsViewSet, CourseViewSet, SectionViewSet, LabViewSet,
     PathViewSet, CompetitionViewSet, CompetitionParticipationViewSet,
-    RankViewSet, LeaderboardViewSet, EnrollmentViewSet, DiscussionViewSet, TransactionViewSet
+    RankViewSet, LeaderboardViewSet, EnrollmentViewSet, DiscussionViewSet, TransactionViewSet,
+    course_detail, path_detail, learn
 )
-from .models import Course
-
-def learn(request):
-    courses = Course.objects.all()
-    return render(request, 'learn.html', {'courses': courses})
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'user-settings', UserSettingsViewSet)
 router.register(r'courses', CourseViewSet)
-router.register(r'lessons', LessonViewSet)
+router.register(r'sections', SectionViewSet)
 router.register(r'labs', LabViewSet)
 router.register(r'paths', PathViewSet)
 router.register(r'competitions', CompetitionViewSet)
@@ -42,11 +36,13 @@ urlpatterns = [
     path('practice/', views.practice, name='practice'),
     path('subscribe/', views.subscribe, name='subscribe'),
     path('rank/', views.rank, name='rank'),
-    path('course/', views.course_detail, name='course_detail'),
+    path('course/<slug>/', views.course_detail, name='course_detail'),
     path('explore/', views.explore, name='explore'),
     path('setting/', views.usersetting, name='usersetting'),
-    path('learn/path/<slug:slug>/', views.path_detail, name='path_detail'),
-    ]
+    path('learn/path/<slug:slug>/', path_detail, name='path_detail'),
+    path('api/', include(router.urls)),
+]
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

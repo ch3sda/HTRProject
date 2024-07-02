@@ -7,14 +7,16 @@ from django.http import Http404
 from rest_framework.filters import OrderingFilter
 from rest_framework.pagination import PageNumberPagination
 from .models import (
-    User, UserSettings, Course, Lesson, Lab, Path, Competition,
+    User, UserSettings, Course, Lab, Path, Competition,
     CompetitionParticipation, Rank, Leaderboard, Enrollment,
-    Discussion, Transaction
+    Discussion, Transaction, Section, Question
 )
 from .serializers import (
-    UserSerializer, UserSettingsSerializer, CourseSerializer, LessonSerializer, LabSerializer,
-    PathSerializer, CompetitionSerializer, CompetitionParticipationSerializer,
-    RankSerializer, LeaderboardSerializer, EnrollmentSerializer, DiscussionSerializer, TransactionSerializer
+    UserSerializer, UserSettingsSerializer, CourseSerializer,
+    LabSerializer, PathSerializer, CompetitionSerializer,
+    CompetitionParticipationSerializer, RankSerializer, LeaderboardSerializer,
+    EnrollmentSerializer, DiscussionSerializer, TransactionSerializer,
+    SectionSerializer, QuestionSerializer
 )
 from django.shortcuts import render, get_object_or_404
 
@@ -30,9 +32,9 @@ class CourseViewSet(viewsets.ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
 
-class LessonViewSet(viewsets.ModelViewSet):
-    queryset = Lesson.objects.all()
-    serializer_class = LessonSerializer
+class SectionViewSet(viewsets.ModelViewSet):
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
 
 class LabViewSet(viewsets.ModelViewSet):
     queryset = Lab.objects.all()
@@ -69,6 +71,14 @@ class DiscussionViewSet(viewsets.ModelViewSet):
 class TransactionViewSet(viewsets.ModelViewSet):
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+    
+class SectionViewSet(viewsets.ModelViewSet):
+    queryset = Section.objects.all()
+    serializer_class = SectionSerializer
+
+class QuestionViewSet(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer    
 
 
 def some_view(request):
@@ -112,8 +122,9 @@ def subscribe(request):
 def rank(request):
     return render(request, 'htr/rank.html')
 
-def course_detail(request):
-    return render(request, 'htr/course_detail.html')
+def course_detail(request, slug):
+    course = get_object_or_404(Course, slug=slug)
+    return render(request, 'htr/course_detail.html', {'course': course})
 
 def explore(request):
     return render(request, 'htr/explore.html')

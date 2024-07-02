@@ -2,9 +2,9 @@
 
 from rest_framework import serializers
 from .models import (
-    User, UserSettings, Course, Lesson, Lab, Path, Competition,
+    User, UserSettings, Course, Lab, Path, Competition,
     CompetitionParticipation, Rank, Leaderboard, Enrollment,
-    Discussion, Transaction
+    Discussion, Transaction, Section, Question
 )
 
 class UserSerializer(serializers.ModelSerializer):
@@ -20,11 +20,6 @@ class UserSettingsSerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
-        fields = '__all__'
-
-class LessonSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Lesson
         fields = '__all__'
 
 class LabSerializer(serializers.ModelSerializer):
@@ -70,4 +65,14 @@ class DiscussionSerializer(serializers.ModelSerializer):
 class TransactionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Transaction
+        fields = '__all__'
+        
+class SectionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Section
+        fields = '__all__'
+
+class QuestionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Question
         fields = '__all__'

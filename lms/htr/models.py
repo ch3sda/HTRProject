@@ -1,11 +1,8 @@
-# models.py
-
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.utils import timezone
 from django.utils.text import slugify
 
-# Custom User model
 class User(AbstractUser):
     groups = models.ManyToManyField(Group, related_name='htr_user_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='htr_user_set_permissions', blank=True)
@@ -13,25 +10,29 @@ class User(AbstractUser):
 class UserSettings(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     preferences = models.JSONField()
-    
+
 class Path(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     cover = models.ImageField(upload_to='path_covers/', blank=True)
     thumbnail = models.ImageField(upload_to='path_thumbnails/', blank=True)
     logo = models.ImageField(upload_to='path_logos/', blank=True)
-    slug = models.SlugField(unique=True, blank=True)  # Add this line
+    slug = models.SlugField(unique=True, blank=True)
     created_at = models.DateTimeField(default=timezone.now)
-    banner_color_start = models.CharField(max_length=20, default='blue')  # Gradient start color
-    banner_color_end = models.CharField(max_length=20, default='indigo')  # Gradient end color
-    
+    banner_color_start = models.CharField(max_length=20, default='blue')
+    banner_color_end = models.CharField(max_length=20, default='indigo')
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+
 class Course(models.Model):
     title = models.CharField(max_length=100, default='Default Title')
+    slug = models.SlugField(unique=True, blank=True)
     description = models.TextField()
     thumbnail = models.ImageField(upload_to='course_thumbnails/', blank=True)
     logo = models.ImageField(upload_to='course_logos/', blank=True)
@@ -42,23 +43,41 @@ class Course(models.Model):
     def __str__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
-class Lesson(models.Model):
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='lessons')
+class Section(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
+    image = models.ImageField(upload_to='section_images/', blank=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sections')
+    order = models.PositiveIntegerField(default=0)
+
+    class Meta:
+        ordering = ['order']
 
     def __str__(self):
         return self.title
 
+class Question(models.Model):
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='questions')
+    text = models.TextField()
+    answer = models.TextField(blank=True)
+
+    def __str__(self):
+        return self.text
 
 class Lab(models.Model):
-    lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name='labs')
+    section = models.ForeignKey(Section, on_delete=models.CASCADE, related_name='labs', default=None)
     title = models.CharField(max_length=100)
     description = models.TextField()
     thumbnail = models.ImageField(upload_to='lab_thumbnails/', blank=True)
     created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.title
 
 class Competition(models.Model):
     title = models.CharField(max_length=100)
