@@ -134,5 +134,5 @@ def course_detail(request, slug):
 def explore(request):
     return render(request, 'htr/explore.html')
 
-def usersetting(request):
-    return render(request, 'htr/usersetting.html')
+def profile_setting(request):
+    return render(request, 'htr/profile_setting.html')

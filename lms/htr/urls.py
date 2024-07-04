@@ -38,7 +38,7 @@ urlpatterns = [
     path('rank/', views.rank, name='rank'),
     path('course/<slug>/', views.course_detail, name='course_detail'),
     path('explore/', views.explore, name='explore'),
-    path('setting/', views.usersetting, name='usersetting'),
+    path('profile-setting/', views.profile_setting, name='profile_setting'),
     path('learn/path/<slug:slug>/', path_detail, name='path_detail'),
     path('api/', include(router.urls)),
 ]
