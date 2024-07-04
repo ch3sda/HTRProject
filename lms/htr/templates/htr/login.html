@@ -26,79 +26,61 @@
 
     {% include 'components/navbar_guest.html' %}
 
-
-<!-- Login box -->
-  <section >
-    <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-        <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white">
-          <div class="rounded-lg bg-gray-800 pt-5 pb-5 flex flex-col items-center justify-center">
-          <!-- Title -->
-          <h3 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Login</h3>
-          <h3 class="text-xl font-medium text-gray-900 dark:text-white">Welcome back!</h3> 
-          </div>
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <form class="space-y-4 md:space-y-6" action="#">
-                    <div>
-                        <label for="email" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-gray-600">Your email</label>
-                        <div class="relative mb-6">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                              <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
-                                  <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
-                                  <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
-                              </svg>
-                            </div>
-                            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full ps-10 p-2.5 border-2 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-lime-500 dark:focus:border-lime-500" placeholder="name@hacktherealm.com" required="">                       
-                        </div>
-                        <div>
-                            <label for="password" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-gray-600">Password</label>
-                            <div class="relative mb-6">
-                                <div class="absolute inset-y-0 start-0 flex items-center ps-2.5 pointer-events-none">
-                                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 22      ">
-                                            <path fill-rule="evenodd" d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clip-rule="evenodd"/>
-                                    </svg>
-                                </div>
-                                <input type="password" name="password" id="password" placeholder="•••••••••••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full ps-10 p-2.5 border-2 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-lime-500 dark:focus:border-lime-500" required="">
-                            </div>
-                        </div>
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-start">
-                            <div class="flex items-center h-5">
-                              <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded dark:border-gray-600 " required="">
-                            </div>
-                            <div class="ml-3 text-sm">
-                              <label for="remember" class="text-gray-500 dark:text-gray-800">Remember me</label>
-                            </div>
-                        </div>
-                        <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
-                    </div>
-                    <button  href="{% url 'dashboard' %}" class="w-full text-gray-900 bg-gray-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-5 text-center dark:bg-lime-500 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
-                    <div class="inline-flex items-center justify-center w-full">
-                        <hr class="w-64 h-px my-8 bg-gray-200 border-0 dark:bg-gray-700">
-                        <span class="absolute px-3 font-medium text-gray-900 -translate-x-1/2 bg-white left-1/2">or</span>
-                    </div>                    
-                    <div class="flex mb-8">
-                    <button type="button" class="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 me-2 mb-2">
-                        <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
-                        <path fill-rule="evenodd" d="M6.135 3H8V0H6.135a4.147 4.147 0 0 0-4.142 4.142V6H0v3h2v9.938h3V9h2.021l.592-3H5V3.591A.6.6 0 0 1 5.592 3h.543Z" clip-rule="evenodd"/>
-                        </svg>
-                        Login with Facebook
-                    </button>
-                    <button type="button" class="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 me-2 mb-2">
-                            <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
-                            <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
-                            </svg>
-                            Login with Google
-                    </button>
-                    </div>
-                    <p class="text-sm font-light text-gray-500 dark:text-gray-900">
-                        Don’t have an account yet? <a href="{% url 'signup' %}" class="font-medium text-primary-600 hover:underline dark:text-blue-700">Sign up</a>
-                    </p>
-                </form>
+    <section>
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-white">
+            <div class="rounded-lg bg-gray-800 pt-5 pb-5 flex flex-col items-center justify-center">
+              <!-- Title -->
+              <h3 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">Login</h3>
+              <h3 class="text-xl font-medium text-gray-900 dark:text-white">Welcome back!</h3> 
             </div>
+            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <form class="space-y-4 md:space-y-6" method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <div>
+                  <label for="email" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-gray-600">Your email</label>
+                  <div class="relative mb-6">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 16">
+                        <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
+                        <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
+                      </svg>
+                    </div>
+                    <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full pl-10 py-2.5 border-2 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-lime-500 dark:focus:border-lime-500" placeholder="name@hacktherealm.com" required="">                       
+                  </div>
+                </div>
+                <div>
+                  <label for="password" class="block mb-2 text-sm font-semibold text-gray-900 dark:text-gray-600">Password</label>
+                  <div class="relative mb-6">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+                      <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 22">
+                        <path fill-rule="evenodd" d="M8 10V7a4 4 0 1 1 8 0v3h1a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h1Zm2-3a2 2 0 1 1 4 0v3h-4V7Zm2 6a1 1 0 0 1 1 1v3a1 1 0 1 1-2 0v-3a1 1 0 0 1 1-1Z" clip-rule="evenodd"/>
+                      </svg>
+                    </div>
+                    <input type="password" name="password" id="password" placeholder="•••••••••••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full pl-10 py-2.5 border-2 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-lime-500 dark:focus:border-lime-500" required="">
+                  </div>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded dark:border-gray-600 " required="">
+                    </div>
+                    <div class="ml-3 text-sm">
+                      <label for="remember" class="text-gray-500 dark:text-gray-800">Remember me</label>
+                    </div>
+                  </div>
+                  <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
+                </div>
+                <button type="submit" class="w-full text-white bg-gray-500 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 mt-5 text-center dark:bg-lime-500 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
+                <p class="text-sm font-light text-gray-500 dark:text-gray-900 mt-4">
+                  Don’t have an account yet? <a href="{% url 'signup' %}" class="font-medium text-primary-600 hover:underline dark:text-blue-700">Sign up</a>
+                </p>
+              </form>
+            </div>
+          </div>
         </div>
-    </div>
-  </section>
-  
+      </section>
+      
 
 <!-- Footer -->
 {% comment %} FOOTER {% endcomment %}

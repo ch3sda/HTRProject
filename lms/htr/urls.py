@@ -9,6 +9,8 @@ from .views import (
     RankViewSet, LeaderboardViewSet, EnrollmentViewSet, DiscussionViewSet, TransactionViewSet,
     course_detail, path_detail, learn
 )
+from .views import signup_view, login_view, profile_settings
+from django.contrib.auth.views import LogoutView
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -28,8 +30,11 @@ router.register(r'transactions', TransactionViewSet)
 urlpatterns = [
     path('', views.index, name='index'),
     path('index/', views.index, name='index'),
-    path('login/', views.login, name='login'),
-    path('signup/', views.signup, name='signup'),
+    path('logout/', views.logout_view, name='logout'),
+    path('login/', views.login_view, name='login'),
+    path('signup/', views.signup_view, name='signup'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
+    path('profile-settings/', profile_settings, name='profile_settings'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('learn/', views.learn, name='learn'),
     path('compete/', views.compete, name='compete'),

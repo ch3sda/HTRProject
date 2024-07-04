@@ -1,7 +1,6 @@
 # views.py
 
 from rest_framework import viewsets
-from django.shortcuts import render
 from rest_framework.permissions import IsAuthenticated
 from django.http import Http404
 from rest_framework.filters import OrderingFilter
@@ -9,17 +8,44 @@ from rest_framework.pagination import PageNumberPagination
 from .models import (
     User, UserSettings, Course, Lab, Path, Competition,
     CompetitionParticipation, Rank, Leaderboard, Enrollment,
-    Discussion, Transaction, Section, Question
+    Discussion, Transaction, Section, Question , UserProfile ,CustomUser
 )
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .serializers import (
     UserSerializer, UserSettingsSerializer, CourseSerializer,
     LabSerializer, PathSerializer, CompetitionSerializer,
     CompetitionParticipationSerializer, RankSerializer, LeaderboardSerializer,
     EnrollmentSerializer, DiscussionSerializer, TransactionSerializer,
-    SectionSerializer, QuestionSerializer
+    SectionSerializer, QuestionSerializer , CustomUserSerializer
 )
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.decorators import login_required
+from .forms import CustomUserCreationForm, UserLoginForm, CustomUserChangeForm, UserProfileForm
+from django.contrib.auth import get_user_model
+from django.contrib.auth import authenticate, login as django_login  # Rename to avoid conflict with view name
+User = get_user_model()
+from django.contrib.auth import logout  # Import logout function
 
+@login_required
+def profile_settings(request):
+    if request.method == 'POST':
+        user_form = CustomUserChangeForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            return redirect('profile_setting')
+    else:
+        user_form = CustomUserChangeForm(instance=request.user)
+        profile_form = UserProfileForm(instance=request.user.profile)
+    return render(request, 'profile_setting.html', {'user_form': user_form, 'profile_form': profile_form})
+
+
+class CustomUserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+    
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -87,12 +113,42 @@ def some_view(request):
 # Your other views (e.g., index, login, signup, etc.) remain as defined in your previous messages
 def index(request):
     return render(request, 'htr/index.html')
+def signup_view(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password1'])
+            login(request, user)
+            return redirect('dashboard')
+    else:
+        form = CustomUserCreationForm()
+    return render(request, 'htr/signup.html', {'form': form})
 
-def login(request):
-    return render(request, 'htr/login.html')
 
-def signup(request):
-    return render(request, 'htr/signup.html')
+# Update login_view in views.py
+def login_view(request):
+    if request.method == 'POST':
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=email, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('dashboard')
+            else:
+                return render(request, 'htr/login.html', {'form': form, 'error_message': 'Invalid email or password.'})
+    else:
+        form = UserLoginForm()
+    return render(request, 'htr/login.html', {'form': form})
+
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')
 
 def dashboard(request):
     recent_paths = Path.objects.order_by('-created_at')[:5]

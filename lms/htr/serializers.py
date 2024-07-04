@@ -4,9 +4,17 @@ from rest_framework import serializers
 from .models import (
     User, UserSettings, Course, Lab, Path, Competition,
     CompetitionParticipation, Rank, Leaderboard, Enrollment,
-    Discussion, Transaction, Section, Question
+    Discussion, Transaction, Section, Question ,CustomUser , UserProfile
 )
 
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = '__all__'
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

@@ -3,6 +3,25 @@ from django.contrib.auth.models import AbstractUser, Group, Permission
 from django.utils import timezone
 from django.utils.text import slugify
 
+class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    discord = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.username
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='profile')
+    profile_photo = models.ImageField(upload_to='profile_photos/', blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    instagram = models.URLField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.user.username}'s profile"
+
 class User(AbstractUser):
     groups = models.ManyToManyField(Group, related_name='htr_user_set', blank=True)
     user_permissions = models.ManyToManyField(Permission, related_name='htr_user_set_permissions', blank=True)

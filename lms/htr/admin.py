@@ -2,9 +2,20 @@ from django.contrib import admin
 from .models import (
     User, UserSettings, Course, Lab, Path, Competition,
     CompetitionParticipation, Rank, Leaderboard, Enrollment,
-    Discussion, Transaction, Section, Question
+    Discussion, Transaction, Section, Question,CustomUser, UserProfile
 )
+from django.contrib.auth.admin import UserAdmin
+from django import forms
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
+from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
+class CustomUserAdmin(UserAdmin):
+    # Define any custom configurations for UserAdmin here
+    pass
+
+admin.site.register(CustomUser, UserAdmin)
+admin.site.register(UserProfile)
 admin.site.register(User)
 admin.site.register(UserSettings)
 admin.site.register(Lab)
@@ -48,3 +59,21 @@ class SectionAdmin(admin.ModelAdmin):
 @admin.register(Question)
 class QuestionAdmin(admin.ModelAdmin):
     list_display = ('section', 'text')
+
+class CustomUserCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = CustomUser
+        fields = ('username', 'email', 'password1', 'password2')
+
+class CustomUserChangeForm(forms.ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ('username', 'email', 'first_name', 'last_name', 'phone_number', 'discord')
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['profile_photo', 'facebook', 'twitter', 'linkedin', 'instagram']
+
+class UserLoginForm(AuthenticationForm):
+    username = forms.EmailField(label='Email')
