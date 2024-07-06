@@ -62,7 +62,7 @@
                         <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-900">Answer the questions below:</h3>
                         <ul class="list-disc list-inside">
                             {% for question in section.questions.all %}
-                            <li class="mt-2">
+                            <li class="mt-2 list-none">
                                 <p>{{ question.text }}</p>
                                 <form method="post" class="mt-2 flex flex-wrap items-start" data-question-id="{{ question.id }}">
                                     {% csrf_token %}
